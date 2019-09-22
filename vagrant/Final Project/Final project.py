@@ -11,6 +11,13 @@ app = Flask(__name__)
 #DBSession = sessionmaker(bind=engine)
 #session = DBSession()
 
+#show all restaurants
+@app.route('/')
+@app.route('/restaurants')
+def showRestaurants():
+    return render_template('menu.html')
+
+
 if __name__ == '__main__':
     #app.secret_key= 'super_secret_key'
     app.debug = True
