@@ -3,11 +3,14 @@
 	
 	</head>
 	<body>
-	<p>This is all the restaurants</p>
-
-	</body>
-
-
+    <h1>All restaurants</h1>
+	
+	{% for restaurant in restaurants %}
+	<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> 
+		<h3>{{restaurant.name}}</h3></a>
+    {% endfor %}
+    </body>
+    </form>
 
 
 </html>
