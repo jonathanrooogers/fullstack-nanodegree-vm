@@ -15,7 +15,8 @@ session = DBSession()
 @app.route('/')
 @app.route('/restaurants')
 def showRestaurants():
-    return render_template('allrestaurants.html', restaurants = restaurants)
+    restaurantlist = session.query(Restaurant).all()
+    return render_template('allrestaurants.html', restaurants = restaurantlist)
 
 #create new restaurant
 @app.route('/restaurant/new')
@@ -33,10 +34,13 @@ def deleteRestaurant():
     return render_template('deleterestaurant.html')
 
 #show menu for restaurant
-@app.route('/restaurant/<int:restaurant_id>')
-@app.route('/restaurant/<int:restaurant_id>/menu')
-def showMenu():
-    return render_template('menu.html')
+@app.route('/restaurants/<int:restaurant_id>/')
+@app.route('/restaurants/<int:restaurant_id>/menu')
+def showMenu(restaurant_id):
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    items = session.query(MenuItem).filter_by(restaurant_id = restaurant.id).all()
+
+    return render_template('menu.html', restaurant =restaurant, items = items )
 
 #add item to menu
 @app.route('/restaurant/restaurant_id/menu/new')
