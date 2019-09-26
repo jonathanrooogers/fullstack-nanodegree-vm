@@ -5,13 +5,13 @@
 	<body>
     <h1>edit item to menu</h1>
     
-    <form action = "#", method ='post'>
-        <p>Name: </p>>
+    <form action = "{{url_for('editItemMenu', restaurant_id = restaurant_id, menu_id = item.id)}}", method ='post'>
+        <p>Name: </p>
         <input type = "text" size ="30" name="name" placeholder = {{item.name}}>
 
     <input type = "submit" value="edit">
 
-    <a href = '#'> cancel</a>>
+    <a href = '{{url_for('showMenu', restaurant_id = restaurant_id)}}'> cancel</a>>
     </body>
     </form>
 
